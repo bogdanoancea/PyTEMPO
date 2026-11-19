@@ -18,11 +18,10 @@ import math
 import os
 import re
 import tempfile
-from collections.abc import Iterable, Iterator, Sequence
+from collections.abc import Callable, Iterable, Iterator, Sequence
 from datetime import date, datetime
 from typing import (
     Any,
-    Callable,
     NamedTuple,
 )
 
@@ -337,6 +336,17 @@ def matrix_metadata_many(
             metadata[index] = parsed
             cache_module.cache_set(keys[index], parsed)
 
+    # A short return here would silently misalign every caller that zips the
+    # result against `codes` -- toc(full_description=True) would attach each
+    # publication date to the wrong matrix. Refuse instead.
+    if any(value is None for value in metadata):
+        absent = [codes[i] for i, value in enumerate(metadata) if value is None]
+        raise TempoAPIError(
+            "The TEMPO Online service returned no metadata for "
+            + ", ".join(f"`{code}`" for code in absent)
+            + "."
+        )
+
     return [value for value in metadata if value is not None]
 
 
@@ -578,7 +588,7 @@ def plan_query(
         chunk_sizes = [min(cap, low) for cap in caps]
 
     requests_needed = 1
-    for size, step in zip(sizes, chunk_sizes):
+    for size, step in zip(sizes, chunk_sizes, strict=True):
         requests_needed *= math.ceil(size / step)
 
     if requests_needed > request_budget:
@@ -596,7 +606,9 @@ def plan_query(
         cells *= size
 
     return QueryPlan(
-        chunks=[chunk(options, step) for options, step in zip(ids, chunk_sizes)],
+        chunks=[
+            chunk(options, step) for options, step in zip(ids, chunk_sizes, strict=True)
+        ],
         cells=cells,
         requests=int(requests_needed),
         chunk_sizes=chunk_sizes,

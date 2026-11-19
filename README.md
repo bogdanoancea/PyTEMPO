@@ -15,7 +15,7 @@ agriculture, trade and prices.
 pip install tempo-ins
 ```
 
-Python 3.9 or newer and pandas 2.0 or newer. Tested against pandas 2.0, 2.3
+Python 3.10 or newer and pandas 2.0 or newer. Tested against pandas 2.0, 2.3
 and 3.1; pandas 1.x is not supported, because it neither round-trips the
 response cache with its dtypes intact nor tidies without emitting warnings of
 its own.

@@ -8,7 +8,7 @@ abstract: >-
   downloading, and whole tables or filtered selections retrieved either as
   pandas data frames or as CSV files that are kept up to date between runs.
 type: software
-version: 0.1.0
+version: 0.2.0
 license: GPL-3.0-or-later OR EUPL-1.1
 repository-code: "https://github.com/bogdanoancea/PyTEMPO"
 url: "https://github.com/bogdanoancea/PyTEMPO"

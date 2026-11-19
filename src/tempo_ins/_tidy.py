@@ -505,7 +505,9 @@ def tidy(
 
         if unit_values is not None:
             unit_values = [
-                value for value, keep in zip(unit_values, filled.tolist()) if keep
+                value
+                for value, keep in zip(unit_values, filled.tolist(), strict=True)
+                if keep
             ]
         data = data[filled]
 
@@ -580,14 +582,15 @@ def tidy(
                     months.append(None)
 
             period = [
-                _to_date(value, month) for value, month in zip(combined["year"], months)
+                _to_date(value, month)
+                for value, month in zip(combined["year"], months, strict=True)
             ]
             derived_year = combined["year"]
         elif year is not None and sub_annual is not None:
             values, step = sub_annual
             period = [
                 _to_date(value, None if number is None else (number - 1) * step + 1)
-                for value, number in zip(year, values)
+                for value, number in zip(year, values, strict=True)
             ]
 
     # Assemble ----------------------------------------------------------------

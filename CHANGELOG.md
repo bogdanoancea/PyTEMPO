@@ -1,5 +1,22 @@
 # Changelog
 
+## tempo-ins 0.2.0
+
+* Python 3.10 is now the minimum. Python 3.9 reached end of life in October
+  2025 and GitHub's current runner images no longer provide it, so it could
+  not be tested honestly; claiming support for a version that is neither
+  security-supported nor exercised in CI is worse than dropping it. 0.1.0
+  remains installable on 3.9. The test matrix runs 3.10 and 3.13 on Linux,
+  macOS and Windows, with 3.11 and 3.12 on Linux.
+
+* Fixed a path by which `toc(full_description=True)` could have attached each
+  publication date to the wrong matrix code. The internal concurrent metadata
+  fetch filtered missing entries out of its result rather than failing, so a
+  short return would have silently misaligned the per-code columns built from
+  it. It now raises a `TempoAPIError` naming the codes it could not fetch, and
+  every `zip()` over paired sequences passes `strict=True` so that a length
+  mismatch is an error instead of a quiet truncation.
+
 ## tempo-ins 0.1.0
 
 First release: a Python library for the Romanian National Institute of

@@ -7,7 +7,7 @@ name = "tempo-ins"
 dynamic = ["version"]
 description = "Find, inspect and download statistical tables from Romania's National Institute of Statistics TEMPO Online database"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = "GPL-3.0-or-later OR EUPL-1.1"
 license-files = ["LICENSE", "LICENSE.EUPL-1.1"]
 authors = [
@@ -35,7 +35,6 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -88,11 +87,11 @@ markers = [
 
 [tool.ruff]
 line-length = 88
-target-version = "py39"
+target-version = "py310"
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "UP", "B", "C4", "SIM"]
 # B904: the raise-from chain adds noise to messages aimed at end users.
 # SIM117: nested `with` reads better in tests, and parenthesised
-# multi-context `with` is not available on Python 3.9.
+# multi-context `with` reads worse than nesting here.
 ignore = ["B904", "SIM117"]

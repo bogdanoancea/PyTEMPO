@@ -114,7 +114,10 @@ def toc(
     frame["Press_releases"] = extract_links(domain)
     frame["Last_update"] = pd.to_datetime(
         pd.Series(
-            [metadata_date(entry, code=code) for entry, code in zip(metadata, codes)],
+            [
+                metadata_date(entry, code=code)
+                for entry, code in zip(metadata, codes, strict=True)
+            ],
             dtype="object",
         )
     )

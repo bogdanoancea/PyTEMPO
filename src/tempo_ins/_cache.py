@@ -25,8 +25,9 @@ import json
 import os
 import sys
 import time
+from collections.abc import Callable
 from datetime import datetime
-from typing import Any, Callable
+from typing import Any
 
 import pandas as pd
 
