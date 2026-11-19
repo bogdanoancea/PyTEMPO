@@ -1,0 +1,98 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tempo-ins"
+dynamic = ["version"]
+description = "Find, inspect and download statistical tables from Romania's National Institute of Statistics TEMPO Online database"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "GPL-3.0-or-later OR EUPL-1.1"
+license-files = ["LICENSE", "LICENSE.EUPL-1.1"]
+authors = [
+    { name = "Bogdan Oancea", email = "bogdan.oancea@gmail.com" },
+]
+maintainers = [
+    { name = "Bogdan Oancea", email = "bogdan.oancea@gmail.com" },
+]
+keywords = [
+    "statistics",
+    "official statistics",
+    "Romania",
+    "INS",
+    "INSSE",
+    "TEMPO",
+    "open data",
+    "pandas",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Natural Language :: Romanian",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Sociology",
+    "Typing :: Typed",
+]
+dependencies = [
+    "requests>=2.25",
+    # 2.0 is the oldest pandas that round-trips the response cache with its
+    # dtypes intact and tidies without emitting pandas' own warnings.
+    "pandas>=2.0",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7.0"]
+dev = ["pytest>=7.0", "build", "twine", "ruff"]
+
+[project.urls]
+Homepage = "https://github.com/bogdanoancea/PyTEMPO"
+Source = "https://github.com/bogdanoancea/PyTEMPO"
+Issues = "https://github.com/bogdanoancea/PyTEMPO/issues"
+Changelog = "https://github.com/bogdanoancea/PyTEMPO/blob/main/CHANGELOG.md"
+
+[tool.hatch.version]
+path = "src/tempo_ins/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tempo_ins"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/tests",
+    "/README.md",
+    "/CHANGELOG.md",
+    "/CITATION.cff",
+    "/LICENSE",
+    "/LICENSE.EUPL-1.1",
+    "/pyproject.toml",
+]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+markers = [
+    "live: tests that reach the real TEMPO Online service (opt in with TEMPO_LIVE_TESTS=true)",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4", "SIM"]
+# B904: the raise-from chain adds noise to messages aimed at end users.
+# SIM117: nested `with` reads better in tests, and parenthesised
+# multi-context `with` is not available on Python 3.9.
+ignore = ["B904", "SIM117"]

@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "tempo-ins: Tools for Romania's National Institute of Statistics TEMPO Data"
+abstract: >-
+  Find, inspect and download statistical tables from the Romanian National
+  Institute of Statistics' TEMPO Online database. Tables can be listed and
+  searched in Romanian or English, their structure inspected before
+  downloading, and whole tables or filtered selections retrieved either as
+  pandas data frames or as CSV files that are kept up to date between runs.
+type: software
+version: 0.1.0
+license: GPL-3.0-or-later OR EUPL-1.1
+repository-code: "https://github.com/bogdanoancea/PyTEMPO"
+url: "https://github.com/bogdanoancea/PyTEMPO"
+keywords:
+  - official statistics
+  - Romania
+  - TEMPO Online
+  - INSSE
+  - open data
+authors:
+  - family-names: Oancea
+    given-names: Bogdan
+    email: bogdan.oancea@gmail.com
