@@ -1,8 +1,9 @@
 # tempo-ins
 
-[![CI](https://github.com/bogdanoancea/PyTEMPO/actions/workflows/ci.yml/badge.svg)](https://github.com/bogdanoancea/PyTEMPO/actions/workflows/ci.yml)
-[![PyPI](https://img.shields.io/pypi/v/tempo-ins.svg)](https://pypi.org/project/tempo-ins/)
-[![Python versions](https://img.shields.io/pypi/pyversions/tempo-ins.svg)](https://pypi.org/project/tempo-ins/)
+[![CI](https://github.com/bogdanoancea/PyTEMPO/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/bogdanoancea/PyTEMPO/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/tempo-ins)](https://pypi.org/project/tempo-ins/)
+[![Python versions](https://img.shields.io/pypi/pyversions/tempo-ins)](https://pypi.org/project/tempo-ins/)
+[![License](https://img.shields.io/pypi/l/tempo-ins)](https://github.com/bogdanoancea/PyTEMPO/blob/main/LICENSE)
 
 `tempo-ins` gives Python access to the Romanian National Institute of
 Statistics' [TEMPO Online](http://statistici.insse.ro:8077/tempo-online/)
